@@ -1,0 +1,13 @@
+# minified files
+*.min.js
+
+# eslint config files
+.eslintrc*.js
+libs/eslint-config/**/*.js
+externals/eslint-config/**/*.js
+libs/eslint-config/**/*.js
+
+# storybook files
+**/.storybook/*.js
+
+dist
