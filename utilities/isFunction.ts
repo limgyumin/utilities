@@ -7,6 +7,6 @@ import type { Func } from "~types/Func";
  * @returns 값이 함수인지에 대한 boolean 값
  * @category utilities
  */
-export const isFunction = <T extends Func<any[], any>>(value: unknown): value is T => {
-  return typeof value === "function";
+export const isFunction = <T extends Func<any[], any>>(arg: unknown): arg is T => {
+  return typeof arg === "function";
 };
