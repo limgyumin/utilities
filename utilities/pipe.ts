@@ -10,7 +10,7 @@ import { isArray } from "./isArray";
 type Pipped<T extends any[], P extends any[]> = T extends [infer F, ...infer R] ? [Func<P, Returns<F>>, ...Pipped<R, [Returns<F>]>] : T;
 
 export const pipe =
-  <T extends Func[], P extends any[]>(...fns: Pipped<T, P>) =>
+  <T extends Func[], P extends any[]>(...fns: readonly [...Pipped<T, P>]) =>
   (...args: P): Returns<Last<T>> => {
     return reduce(pipeOne, args, fns) as Returns<Last<T>>;
   };

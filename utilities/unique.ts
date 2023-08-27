@@ -1,6 +1,6 @@
 type Unique = {
-  <T>(predicate: (x: T, y: T) => boolean, arr: readonly T[]): readonly T[];
-  <T>(predicate: (x: T, y: T) => boolean): (arr: readonly T[]) => readonly T[];
+  <T>(predicate: (x: T, y: T) => boolean, arr: readonly T[]): T[];
+  <T>(predicate: (x: T, y: T) => boolean): (arr: readonly T[]) => T[];
 };
 
 /**
