@@ -53,6 +53,7 @@ module.exports = {
             format: ["PascalCase"],
           },
         ],
+        "@typescript-eslint/no-explicit-any": "off",
         "import/no-extraneous-dependencies": "off",
         "object-shorthand": ["error", "always"],
         curly: ["error", "all"],
