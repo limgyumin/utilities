@@ -5,6 +5,7 @@ import type { Last } from "~types/Last";
 import type { Returns } from "~types/Returns";
 
 import { reduce } from "./reduce";
+import { isArray } from "./isArray";
 
 type Pipped<T extends any[], P extends any[]> = T extends [infer F, ...infer R] ? [Func<P, Returns<F>>, ...Pipped<R, [Returns<F>]>] : T;
 
@@ -15,7 +16,7 @@ export const pipe =
   };
 
 const pipeOne = <T, U extends Func>(x: T, y: U): T => {
-  if (Array.isArray(x)) {
+  if (isArray(x)) {
     x = y(...x);
   } else {
     x = y(x);
