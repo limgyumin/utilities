@@ -1,1 +1,1 @@
-export type Obj = Record<PropertyKey, any>;
+export type Obj = Record<PropertyKey, unknown>;

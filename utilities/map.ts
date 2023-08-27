@@ -1,21 +1,16 @@
-import type { Mapped } from "~types/Mapped";
-import type { Obj } from "~types/Obj";
-import { entries } from "./entries";
-import { reduce } from "./reduce";
-
 type Map = {
-  <T extends Obj, P>(create: (property: keyof T) => P, obj: T): Mapped<T, P>;
-  <T extends Obj, P>(create: (property: keyof T) => P): (obj: T) => Mapped<T, P>;
+  <T, U>(create: (property: T) => U, arr: readonly T[]): U[];
+  <T, U>(create: (property: T) => U): (arr: readonly T[]) => U[];
 };
 
-const sync = <T extends Obj, P>(create: (property: keyof T) => P, obj: T): Mapped<T, P> => {
-  return reduce((acc, [key, value]) => ({ ...acc, [key]: create(value) }), {} as Mapped<T, P>, entries(obj));
+const sync = <T, U>(create: (property: T) => U, arr: readonly T[]): U[] => {
+  return arr.map(create);
 };
 
-export const map: Map = <T extends Obj, P>(create: (property: keyof T) => P, obj?: T): any => {
-  if (obj === undefined) {
-    return (obj: T) => sync(create, obj);
+export const map: Map = <T, U>(create: (property: T) => U, arr?: readonly T[]): any => {
+  if (arr === undefined) {
+    return (arr: readonly T[]) => sync(create, arr);
   }
 
-  return sync(create, obj);
+  return sync(create, arr);
 };
